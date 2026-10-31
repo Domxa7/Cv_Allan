@@ -1,0 +1,100 @@
+/* Sea-green resume layout with tabs, framed photo and side social links */
+:root { --bg: #0b4f45; --accent: #ffffff; --white: #ffffff; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+.page { max-width: 1180px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+/* Header */
+.top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+.logo { font-size: 3.2rem; font-weight: 900; letter-spacing: 8px; margin: 2.8rem 0 0; }
+
+.tabs { list-style: none; display: flex; margin: 0; padding: 0; }
+.tab {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 125px; height: 112px; margin-top: 12px;
+  color: var(--white); text-decoration: none; font-weight: 500;
+}
+.tab span { font-size: 1.6rem; }
+.tab.active { background: var(--white); color: var(--bg); font-weight: 700; }
+
+/* Panels */
+.panel { display: none; padding-top: 3rem; }
+.panel.active { display: block; }
+
+/* Profile */
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+.frame {
+  margin: 0; border: 10px solid var(--accent);
+  aspect-ratio: 1 / 0.95; display: flex; align-items: center; justify-content: center;
+}
+.frame img { width: 46%; height: auto; display: block; }
+
+h1 { font-size: 2.9rem; font-weight: 900; text-transform: uppercase; line-height: 1.05; margin: 0.8rem 0 0.4rem; }
+.role { text-transform: uppercase; letter-spacing: 4px; font-weight: 700; margin: 0 0 1.5rem; }
+
+.info { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+.info li { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; flex-wrap: wrap; }
+.ico {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--bg);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem;
+}
+a { color: var(--accent); font-weight: 500; }
+
+/* Section headings with white square */
+.obj { font-size: 1.5rem; font-weight: 900; margin: 1.8rem 0 0.6rem; display: flex; align-items: center; gap: 0.7rem; }
+.obj::before { content: ""; width: 22px; height: 22px; background: var(--accent); display: inline-block; }
+
+article { margin-bottom: 0.9rem; }
+article ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+.note { font-size: 0.9rem; font-style: italic; opacity: 0.85; margin: 0 0 1rem; }
+article h3, .cols h3 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+article p { margin: 0.1rem 0; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+.cols ul { padding-left: 1.2rem; margin: 0.3rem 0 0; }
+
+/* Social bar on the left */
+.social { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 5; }
+.social svg { width: 20px; height: 20px; }
+.social a {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--bg);
+  display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700;
+}
+
+/* Print / Download buttons */
+.act {
+  position: fixed; bottom: 40px; background: none; border: 0; cursor: pointer;
+  font: 700 1rem Roboto, Arial, sans-serif; color: var(--white); display: flex; flex-direction: column; align-items: center;
+}
+.act span { font-size: 1.7rem; }
+.act.left { left: 20px; }
+.act.right { right: 20px; }
+
+footer { position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 0.6rem; font-weight: 500; background: var(--bg); }
+
+@media (max-width: 850px) {
+  .profile-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  h1 { font-size: 2.1rem; }
+  .tab { width: 78px; height: 90px; font-size: 0.8rem; }
+  .logo { margin-top: 1.5rem; }
+  .social { position: static; transform: none; flex-direction: row; justify-content: center; padding-top: 1rem; }
+  .page { padding: 0 1rem 7rem; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  a, .obj::before { color: #000; }
+  .obj::before { background: #000; }
+  .social, .act, footer, .tabs { display: none; }
+  .panel { display: block !important; }
+}
